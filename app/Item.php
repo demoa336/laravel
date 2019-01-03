@@ -10,6 +10,8 @@ class Item extends Model
         'name', 'image', 'description', 'price'
     ];
 
+    protected $appends = ['file'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -22,5 +24,10 @@ class Item extends Model
     public function getImageAttribute($value)
     {
         return url('/').'/storage/'.$value;
+    }
+
+    public function getFileAttribute()
+    {
+        return $this->attributes['image'];
     }
 }
